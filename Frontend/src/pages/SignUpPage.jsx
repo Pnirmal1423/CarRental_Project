@@ -70,7 +70,7 @@ const SignUpPage = () => {
               type="text"
               className="form-control form-control-login"
               name="name"
-              placeholder="Patel Ritesh"
+              placeholder="Your Name"
               onChange={handleChange}
               required
             />
@@ -82,7 +82,7 @@ const SignUpPage = () => {
               type="email"
               className="form-control form-control-login"
               name="email"
-              placeholder="name@example.com"
+              placeholder="abc@email.com"
               onChange={handleChange}
               required
             />
@@ -94,7 +94,7 @@ const SignUpPage = () => {
               type="tel"
               className="form-control form-control-login"
               name="phone"
-              placeholder="+91 99999 99999"
+              placeholder="+91"
               onChange={handleChange}
               required
             />

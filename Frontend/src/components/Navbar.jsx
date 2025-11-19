@@ -40,9 +40,6 @@ const Navbar = () => {
               <Link className="nav-link text-warning" to="/admin">Admin</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/booking">BookCar</Link>
-            </li>
-            <li className="nav-item">
               <Link className="nav-link" to="/login">Login</Link>
             </li>
 
