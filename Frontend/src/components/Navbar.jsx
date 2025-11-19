@@ -31,10 +31,7 @@ const Navbar = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/history">MyBookings</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/signup">SignUp</Link> 
-            </li>
-
+            
             {/* Main Navigation */}
             <li className="nav-item">
               <Link className="nav-link" to="/">Home</Link>
