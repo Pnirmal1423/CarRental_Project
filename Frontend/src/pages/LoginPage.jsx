@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -7,9 +8,8 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Login attempt with:', { email, password });
-    // Here you would typically send data to your backend
-    // and handle authentication logic (e.g., redirect on success)
-    alert(`Attempting to log in with ${email}`);
+    // Here you would send data to your backend
+    alert(`Attempting to log in with ${email}.`);
   };
 
   return (
@@ -43,9 +43,12 @@ const LoginPage = () => {
           </div>
           <div className="d-grid gap-2">
             <button type="submit" className="btn btn-primary-custom btn-lg">Login</button>
+            
+            {/* The connection point */}
             <p className="text-center mt-3 mb-0 text-muted">
-              Don't have an account? <a href="#" className="text-decoration-none">Sign Up</a>
+              Don't have an account? <Link to="/signup" className="text-decoration-none fw-bold">Sign Up Here</Link>
             </p>
+            
           </div>
         </form>
       </div>
