@@ -9,7 +9,7 @@ const Navbar = () => {
         {/* Company Name with Icon */}
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <span className="logo-icon me-2" role="img" aria-label="car">&#128663;</span>
-          <span className="company-name">Patel's Cars</span>
+          <span className="company-name">Patel's Car</span>
         </Link>
 
         <button
