@@ -1,0 +1,81 @@
+/* Full page car background */
+.signup-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: url("https://images.unsplash.com/photo-1503376780353-7e6692767b70")
+    no-repeat center center/cover;
+
+  position: relative;
+}
+
+/* Dark overlay */
+.signup-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+/* Signup card */
+.signup-card {
+  width: 420px;
+  max-width: 90%;
+  padding: 40px;
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  position: relative;
+  z-index: 2;
+}
+
+/* Text color */
+.signup-card label,
+.signup-card h2,
+.signup-card p {
+  color: #fff;
+}
+
+/* Inputs */
+.signup-card input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* Button */
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  background: #0a66ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background: #0057e6;
+}
+
+/* Login link */
+.login-link {
+  color: #ffca28;
+  font-weight: bold;
+}
