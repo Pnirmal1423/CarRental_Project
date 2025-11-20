@@ -44,7 +44,7 @@ const SignUpPage = () => {
       .then(data => {
         if (data.message) {
           alert("Registration Successful!");
-          navigate('/login');
+          navigate('/booking');
         } else {
           alert("Signup Failed");
         }
