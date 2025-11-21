@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ForgotPassword from "./pages/ForgotPassword";
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -26,6 +27,7 @@ function App() {
             <Route path="/history" element={<BookingHistoryPage />} />
             <Route path="/receipt" element={<ReceiptPage />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>
         </main>
         <Footer />

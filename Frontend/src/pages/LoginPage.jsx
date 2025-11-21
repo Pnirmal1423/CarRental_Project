@@ -11,7 +11,7 @@ const LoginPage = () => {
     e.preventDefault();
     console.log("Login attempt:", { email, password });
 
-    navigate("/booking");   // 🔥 Moves directly to booking
+    navigate("/booking"); // Redirect on login
   };
 
   return (
@@ -37,7 +37,7 @@ const LoginPage = () => {
           </div>
 
           {/* Password */}
-          <div className="mb-4">
+          <div className="mb-2">
             <label
               htmlFor="passwordInput"
               className="form-label form-label-login"
@@ -54,6 +54,13 @@ const LoginPage = () => {
               required
             />
           </div>
+
+          {/* Forgot Password Link */}
+          <p className="text-end mb-4">
+            <Link to="/forgot-password" className="text-decoration-none">
+              Forgot Password?
+            </Link>
+          </p>
 
           {/* Submit button */}
           <div className="d-grid gap-2">
