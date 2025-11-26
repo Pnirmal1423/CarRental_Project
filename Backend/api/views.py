@@ -99,6 +99,12 @@ def create_booking(request):
         booking = CarBooking.objects.create(
             user=user,
             car=car,
+
+            # FIXED FIELD MAPPING
+            customer_name=data.get("name"),
+            customer_phone=data.get("phone"),
+            customer_address=data.get("address"),
+
             start_date=data.get("start_date"),
             end_date=data.get("end_date"),
             total_price=data.get("total_price"),
