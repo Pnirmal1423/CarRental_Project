@@ -3,7 +3,6 @@ import BookingModal from "../components/BookingModal";
 import { useNavigate } from "react-router-dom";
 
 const BookingPage = () => {
-
   // ====== CAR LIST ======
   const [cars] = useState([
     {
@@ -87,40 +86,49 @@ const BookingPage = () => {
     car.seats.toString().includes(searchTerm)
   );
 
-  // ====== MODAL ======
+  // ====== MODAL HANDLERS ======
   const handleBookClick = (car) => setSelectedCar(car);
   const handleCloseModal = () => setSelectedCar(null);
 
-  const handleConfirmBooking = (bookingDetails) => {
+  const handleConfirmBooking = (bookingData) => {
     const existing = JSON.parse(localStorage.getItem("bookings") || "[]");
 
+    // Save full car info inside booking
     const newBooking = {
-      ...bookingDetails,
       id: Date.now(),
+      car: {
+        id: selectedCar.id,
+        name: selectedCar.name,
+        type: selectedCar.type,
+        image: selectedCar.image,
+        seats: selectedCar.seats,
+        fuel: selectedCar.fuel,
+        transmission: selectedCar.transmission,
+        price: selectedCar.price
+      },
       status: "Confirmed",
       date: new Date().toLocaleDateString(),
+      startDate: bookingData.startDate || "TBD",
+      endDate: bookingData.endDate || "TBD",
+      paymentMethod: bookingData.paymentMethod || "Cash",
+      totalPrice: selectedCar.price
     };
 
     localStorage.setItem("bookings", JSON.stringify([...existing, newBooking]));
     alert("Booking Successful!");
+    setSelectedCar(null);
     navigate("/history");
   };
 
   return (
     <div className="container py-5">
-
       {/* ====== SEARCH BAR ====== */}
       <div className="mb-4 d-flex justify-content-center">
         <input
           type="text"
           className="form-control shadow-sm"
           placeholder="Search car by name, type, fuel, seats..."
-          style={{
-            maxWidth: "700px",
-            padding: "12px",
-            borderRadius: "10px",
-            fontSize: "1.1rem",
-          }}
+          style={{ maxWidth: "700px", padding: "12px", borderRadius: "10px", fontSize: "1.1rem" }}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -135,19 +143,13 @@ const BookingPage = () => {
           filteredCars.map((car) => (
             <div className="col-md-6 col-lg-4 mb-4" key={car.id}>
               <div className="card h-100 shadow-sm border-0">
-
                 {/* IMAGE */}
                 <div style={{ overflow: "hidden", height: "240px" }}>
                   <img
                     src={car.image}
                     alt={car.name}
                     className="card-img-top"
-                    style={{
-                      objectFit: "cover",
-                      width: "100%",
-                      height: "100%",
-                      transition: "0.3s",
-                    }}
+                    style={{ objectFit: "cover", width: "100%", height: "100%", transition: "0.3s" }}
                     onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
                     onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
                   />
@@ -159,24 +161,15 @@ const BookingPage = () => {
                     <h5 className="fw-bold">{car.name}</h5>
                     <span className="badge bg-primary">{car.type}</span>
                   </div>
-
-                  <p className="small text-muted">
-                    {car.fuel} • {car.transmission} • {car.seats} Seats
-                  </p>
-
+                  <p className="small text-muted">{car.fuel} • {car.transmission} • {car.seats} Seats</p>
                   <p className="fst-italic small">"{car.description}"</p>
-
                   <div className="mt-auto pt-3 d-flex justify-content-between align-items-center border-top">
                     <span className="fs-4 fw-bold">₹{car.price}</span>
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => handleBookClick(car)}
-                    >
+                    <button className="btn btn-primary" onClick={() => handleBookClick(car)}>
                       Book Now
                     </button>
                   </div>
                 </div>
-
               </div>
             </div>
           ))
