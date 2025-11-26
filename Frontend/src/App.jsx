@@ -28,6 +28,8 @@ function App() {
             <Route path="/receipt" element={<ReceiptPage />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            
           </Routes>
         </main>
         <Footer />

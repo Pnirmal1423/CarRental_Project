@@ -7,11 +7,47 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     console.log("Login attempt:", { email, password });
 
-    navigate("/booking"); // Redirect on login
+    try {
+      // 🔥 FIXED BACKEND URL
+      const res = await fetch("http://localhost:8000/api/login/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      console.log("Login Response:", data);
+
+      if (data.error) {
+        alert(data.error);
+        return;
+      }
+
+      // --------------------------
+      // ADMIN LOGIN
+      // --------------------------
+      if (email === "nirmal@gmail.com" && password === "123") {
+        localStorage.setItem("admin", "true");
+        navigate("/admin-dashboard");
+        return;
+      }
+
+      // --------------------------
+      // NORMAL USER LOGIN
+      // --------------------------
+      localStorage.setItem("user_id", data.user_id);
+      localStorage.setItem("user_name", data.name);
+      navigate("/booking");
+
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Server error, please try again.");
+    }
   };
 
   return (
@@ -55,7 +91,6 @@ const LoginPage = () => {
             />
           </div>
 
-          {/* Forgot Password Link */}
           <p className="text-end mb-4">
             <Link to="/forgot-password" className="text-decoration-none">
               Forgot Password?

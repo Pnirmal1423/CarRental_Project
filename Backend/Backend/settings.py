@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'car_db',
+        'NAME': 'Demo',
         'USER': 'root',
         'PASSWORD': '1410',
         'HOST': 'localhost',

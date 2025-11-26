@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import BookingModal from "../components/BookingModal";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 const BookingPage = () => {
   // ====== CAR LIST ======
@@ -90,35 +92,25 @@ const BookingPage = () => {
   const handleBookClick = (car) => setSelectedCar(car);
   const handleCloseModal = () => setSelectedCar(null);
 
-  const handleConfirmBooking = (bookingData) => {
-    const existing = JSON.parse(localStorage.getItem("bookings") || "[]");
+ const handleConfirmBooking = async (bookingData) => {
+  try {
+    await axios.post("http://127.0.0.1:8000/api/booking/", {
+      user: 1,
+      car: selectedCar.id,
+      start_date: bookingData.startDate,
+      end_date: bookingData.endDate,
+      total_price: selectedCar.price
+    });
 
-    // Save full car info inside booking
-    const newBooking = {
-      id: Date.now(),
-      car: {
-        id: selectedCar.id,
-        name: selectedCar.name,
-        type: selectedCar.type,
-        image: selectedCar.image,
-        seats: selectedCar.seats,
-        fuel: selectedCar.fuel,
-        transmission: selectedCar.transmission,
-        price: selectedCar.price
-      },
-      status: "Confirmed",
-      date: new Date().toLocaleDateString(),
-      startDate: bookingData.startDate || "TBD",
-      endDate: bookingData.endDate || "TBD",
-      paymentMethod: bookingData.paymentMethod || "Cash",
-      totalPrice: selectedCar.price
-    };
-
-    localStorage.setItem("bookings", JSON.stringify([...existing, newBooking]));
     alert("Booking Successful!");
     setSelectedCar(null);
     navigate("/history");
-  };
+
+  } catch (error) {
+    console.error("Booking Error:", error.response?.data || error);
+    alert("Booking Failed. Check backend.");
+  }
+};
 
   return (
     <div className="container py-5">
