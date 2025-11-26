@@ -33,11 +33,6 @@ class CarBooking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
 
-    # NEW FIELDS
-    customer_name = models.CharField(max_length=100, default="")
-    customer_phone = models.CharField(max_length=20, default="")
-    customer_address = models.TextField(default="")
-
     start_date = models.DateField()
     end_date = models.DateField()
 
@@ -48,4 +43,3 @@ class CarBooking(models.Model):
 
     def __str__(self):
         return f"Booking -> {self.user.email} | {self.car.car_name}"
-

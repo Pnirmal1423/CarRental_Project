@@ -94,18 +94,12 @@ const BookingPage = () => {
 
  const handleConfirmBooking = async (bookingData) => {
   try {
-    await axios.post("http://127.0.0.1:8000/api/book/", {
+    await axios.post("http://127.0.0.1:8000/api/booking/", {
       user: 1,
       car: selectedCar.id,
       start_date: bookingData.startDate,
       end_date: bookingData.endDate,
-      total_price: bookingData.totalPrice,
-
-      // NEW FIELDS
-      name: bookingData.name,
-      phone: bookingData.phone,
-      address: bookingData.address,
-      payment_method: bookingData.paymentMethod
+      total_price: selectedCar.price
     });
 
     alert("Booking Successful!");
@@ -117,7 +111,6 @@ const BookingPage = () => {
     alert("Booking Failed. Check backend.");
   }
 };
-
 
   return (
     <div className="container py-5">
